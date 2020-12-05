@@ -1,9 +1,8 @@
 # フォーク版の変更点など
 
-* forked from [soh335/radicast](https://github.com/soh335/radicast)
-* こちらを参考に変更点を取り込み：https://omiso46.blogspot.com/2018/05/raspberrypi-radiko-podcast_23.html
-* DockerイメージをAlpine化
-* [Docker Hub](https://hub.docker.com/r/mtkhs/radicast/)
+* forked from [mtkhs/radicast](https://github.com/mtkhs/radicast)
+* partial keyの取得方法の変更に伴う修正版。
+* DockerイメージをArm64化
 
 # radicast
 
