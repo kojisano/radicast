@@ -1,8 +1,8 @@
 FROM arm64v8/golang
 
-ENV GOROOT /usr/lib/go
-ENV GOPATH /go
-ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+#ENV GOROOT /usr/lib/go
+#ENV GOPATH /go
+#ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 ENV TZ='Asia/Tokyo'
 
 RUN apt-get update && apt-get upgrade -y && apt-get -y install git \
@@ -14,10 +14,10 @@ RUN curl http://www.swftools.org/swftools-0.9.2.tar.gz | tar xz -C /tmp \
     && chmod 755 /tmp/swftools-0.9.2/config.sub \
     && cd /tmp/swftools-0.9.2 && ./configure && make \
     && mv /tmp/swftools-0.9.2/src/swfextract /usr/local/bin/ \
-#    && go get -v github.com/kojisano/radicast \
     && rm -r /tmp/swftools-0.9.2
+RUN go get -v github.com/kojisano/radicast/fix-missing-auth-token
 
-COPY ./radicast /go/bin/
+# COPY ./radicast /go/bin/
 
 ENTRYPOINT [ "radicast" ]
 CMD [ "--help" ]
