@@ -1,4 +1,4 @@
-module github.com/kojisano/radicast/fix-missing-auth-token
+module github.com/kojisano/radicast
 
 go 1.15
 

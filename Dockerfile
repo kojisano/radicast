@@ -15,7 +15,7 @@ RUN curl http://www.swftools.org/swftools-0.9.2.tar.gz | tar xz -C /tmp \
     && cd /tmp/swftools-0.9.2 && ./configure && make \
     && mv /tmp/swftools-0.9.2/src/swfextract /usr/local/bin/ \
     && rm -r /tmp/swftools-0.9.2
-RUN go get -v github.com/kojisano/radicast/fix-missing-auth-token
+RUN go get -v github.com/kojisano/radicast
 
 # COPY ./radicast /go/bin/
 
