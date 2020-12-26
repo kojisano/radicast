@@ -17,7 +17,7 @@ RUN curl http://www.swftools.org/swftools-0.9.2.tar.gz | tar xz -C /tmp \
     && rm -r /tmp/swftools-0.9.2
 RUN go get -v github.com/kojisano/radicast
 
-# COPY ./radicast /go/bin/
+COPY ./radicast /go/bin/
 
 ENTRYPOINT [ "radicast" ]
 CMD [ "--help" ]

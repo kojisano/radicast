@@ -119,15 +119,17 @@ func (r *Radicast) ReloadConfig() error {
 			func(station string, spec string) {
 				r.Log("station:", station, " spec:", spec)
 				c.AddFunc(spec, func() {
+					r.Log("addFunc1: spec: ", spec)
 					r.wg.Add(1)
+					r.Log("addFunc2: spec: ", spec)
 					defer r.wg.Done()
-
+					r.Log("addFunc3: spec: ", spec)
 					dir, err := ioutil.TempDir("", "radiko")
 					if err != nil {
 						r.Log(err)
 						return
 					}
-
+					r.Log("addFunc4: spec: ", spec)
 					radiko := &Radiko{
 						Station:   station,
 						Bitrate:   r.bitrate,
@@ -135,7 +137,7 @@ func (r *Radicast) ReloadConfig() error {
 						Converter: r.converter,
 						TempDir:   dir,
 					}
-
+					r.Log("addFunc5: spec: ", spec)
 					if err := radiko.Run(r.ctx); err != nil {
 						os.RemoveAll(radiko.TempDir)
 						r.Log(err)

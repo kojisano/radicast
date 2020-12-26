@@ -28,14 +28,14 @@ import (
 const (
 	radikoTimeLayout = "20060102150405"
 	playerUrl        = "http://radiko.jp/apps/js/flash/myplayer-release.swf"
-	auth_key		 = "bcd151073c03b352e1ef2fd66c32209da9ca0afa"
+	auth_key         = "bcd151073c03b352e1ef2fd66c32209da9ca0afa"
 )
 
 type RadikoPrograms struct {
 	Stations struct {
 		Station []struct {
-			Id   string `xml:"id,attr"`
-			Name string `xml:"name"`
+			Id    string `xml:"id,attr"`
+			Name  string `xml:"name"`
 			Progs struct {
 				Date string       `xml:"date"`
 				Prog []RadikoProg `xml:"prog"`
@@ -101,7 +101,7 @@ func (r *RadikoResult) Save(dir string) error {
 		return err
 	}
 
-	if err := RenameOrCopy(filepath.Dir(r.M4aPath) + "/" + imgName, imgPath); err != nil {
+	if err := RenameOrCopy(filepath.Dir(r.M4aPath)+"/"+imgName, imgPath); err != nil {
 		return err
 	}
 
@@ -119,7 +119,7 @@ func (r *RadikoResult) Save(dir string) error {
 		return err
 	}
 
-    r.Log("saved m4a:", m4aPath, " xml:", xmlPath, " img:", imgPath)
+	r.Log("saved m4a:", m4aPath, " xml:", xmlPath, " img:", imgPath)
 
 	return nil
 }
@@ -138,7 +138,7 @@ type Radiko struct {
 }
 
 func (r *Radiko) Run(ctx context.Context) error {
-
+	r.Log("radiko.Run1, ctx: ", ctx)
 	results := r.run(ctx)
 
 	switch len(results) {
@@ -586,7 +586,7 @@ func (r *Radiko) auth(ctx context.Context) (string, string, error) {
 			return err
 		}
 
-		var partialKeyStr = string([]rune(auth_key)[keyoffsetI:keyoffsetI+keylengthI])
+		var partialKeyStr = string([]rune(auth_key)[keyoffsetI : keyoffsetI+keylengthI])
 
 		partialkey = base64.StdEncoding.EncodeToString([]byte(partialKeyStr))
 
@@ -603,8 +603,8 @@ func (r *Radiko) auth(ctx context.Context) (string, string, error) {
 		return "", "", err
 	}
 
-//	fmt.Println(authtoken)
-//	fmt.Println(partialkey)
+	//	fmt.Println(authtoken)
+	//	fmt.Println(partialkey)
 
 	req.Header.Set("pragma", "no-cache")
 	req.Header.Set("X-Radiko-User", "dummy_user")
